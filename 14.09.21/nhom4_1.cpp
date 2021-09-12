@@ -7,7 +7,7 @@ void Tan() {
 }
 
 void Vu() {
-
+	cout << "Vu\n";
 }
 
 int main() {

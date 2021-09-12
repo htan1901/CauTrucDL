@@ -12,4 +12,6 @@ void Vu() {
 
 int main() {
 	cout  << "Bai tap co giao";
+	Tan();
+	Vu();
 }

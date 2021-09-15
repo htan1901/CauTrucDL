@@ -86,6 +86,31 @@ void insertNode(List &list, int newValue, int value) {
 	}
 }
 
+void swapData(Node *first, Node *second) {
+	Node *temp = new Node;
+	temp->data = first->data;
+	first->data = second->data;
+	second->data = temp->data;
+	free(temp);
+}
+
+void sort(List &list) {
+	for(Node *i = list.head; i != NULL; i = i->next)
+		for(Node *j = i->next; j != NULL; j = j->next)
+			if(i->data > j->data)
+				swapData(i,j);
+}
+
+Node* searchNode(List list, int value) {
+	Node* node = list.head;
+	while(node != NULL) {
+		if(node->data == value)
+			return node;
+		node = node->next;
+	}
+	return NULL;
+}
+
 void xuatChucNang() {
 	cout << "Chon chuc nang: \n"
 			 << "1. Them 1 node vao danh sach\n"
@@ -109,9 +134,9 @@ void baitap1() {
 		do {
 			xuatChucNang();
 			cin >> n;
-			if(n<0 || n>5)
+			if(n<0 || n>7)
 				cout << "Nhap sai!!\n";
-		} while (n<0 || n>5);
+		} while (n<0 || n>7);
 
 		switch (n) {
 			case 1: 	
@@ -142,6 +167,16 @@ void baitap1() {
 				insertNode(list,value,num);
 				cout << "\nDanh sach sau khi them: \n";
 				traverse(list);
+				break;
+			case 6:
+				cout << "\nDanh sach sau khi sap xep: \n";
+				sort(list);
+				traverse(list);
+				break;
+			case 7:
+				cout << "Nhap value can tim: ";
+				cin >> value;
+				cout << (searchNode(list,value) == NULL? "Khong tim thay\n": "Tim thay\n");
 				break;
 		}
 	}

@@ -100,36 +100,58 @@ void sort(List &list) {
 }
 
 int main() {
-	int n; // n la so luong phan tu
+	int n,chon;
 	List list;
-	initList(list); // khoi tao
-	cout << "Nhap so luong sinh vien: ";
-	cin >> n; // nhap n
-	// nhap n phan tu vao list
-	while (n > 0) {
-		SinhVien temp;
-		cout << "Nhap sinh vien: \n";
-		nhapSV(temp);
-		Node *gido = CreateNode(temp);
-		addTail(list,gido);
-		n--;
-	}
-	cout << "Xuat danh sach: ";
-	xuatList(list); 
-	cout << "Xuat danh sach sinh vien co diem DTB > 5\n";
-	xuatListDTB(list);
-	char *ten = new char(50);
-	cout << "Nhap ten can tim: ";
-	fflush(stdin);
-	gets(ten);
-	Node *sv = searchSV(list,ten);
-	if(sv == NULL) 
-		cout << "Khong tim thay\n";
-	else {
-		cout << "Tim thay: \n";
-		XuatSV(sv->info);
-	}
-	cout << "Danh sach sau khi sort\n";
-	sort(list);
-	xuatList(list);
+	initList(list);
+	do{
+		system("cls");
+		printf("\n------Menu-----");
+		printf("\n1.Them 1 node");
+		printf("\n2.Xuat list");
+		printf("\n3.Xuat theo Diem Trung Binh");
+		printf("\n4.Tim Sinh Vien co ten la X");
+		printf("\n5.Sap xep theo Diem Trung Binh");
+		printf("\n0.exit");
+		printf("\nChon : ");
+		scanf("%d",&chon);
+		switch (chon)
+		{
+			case 0:
+				exit(0);	
+			case 1:
+				SinhVien temp;
+				nhapSV(temp);
+				addTail(list,CreateNode(temp));
+				break;
+			case 2:
+				printf("\nDanh sach Sinh Vien: \n");
+				xuatList(list);
+				system("pause");
+				break;
+			case 3:
+				printf("\nSinh Vien Co Diem Trung Binh > 5 la : \n");
+				xuatListDTB(list);
+				system("pause");
+				break;
+			case 4:
+				char *ten = new char[50];
+				printf("\nNhap Ten Sinh Vien : ");
+				fflush(stdin);
+				gets(ten);
+				Node* a = searchSV(list,ten);
+				(a==NULL) ? printf("\nKhong Tim Thay !\n") : printf("\nTim thay !\n");
+				system("pause");
+				break;
+			case 5:
+				sort(list);
+				printf("\n\tDa sap xep xong ! \n");
+				system("pause");
+				break;
+			default:
+				printf("\nChuc nang khong ton tai\n");
+				printf("Chon lai\n");
+				system("pause");
+				break;
+		}
+	}while(chon != 0);
 }

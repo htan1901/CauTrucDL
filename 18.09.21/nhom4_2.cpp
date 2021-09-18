@@ -21,13 +21,27 @@ struct List {
 void initList(List &list) {
 
 }
-
+Node * CreateNode(SinhVien value)
+{
+	Node* a=new Node();
+	if(a!=NULL)
+	{
+		a->info = value;
+		a->next = NULL;
+	}
+	return a;
+}
 void xuatList(List list) {
 
 }
 
 void xuatListDTB(List list) {
-
+	Node* i =list.head;
+	while (i!=NULL)
+	{
+		
+	}
+	
 }
 
 Node* searchSV(List list, char* ten) {

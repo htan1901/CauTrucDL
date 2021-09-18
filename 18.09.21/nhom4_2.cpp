@@ -76,13 +76,13 @@ void xuatListDTB(List list) {
 
 Node* searchSV(List list, char* ten) {
 	Node*i =list.head;
-    while (i!=NULL)
-    {
-      if(strcmp(i->info.HoTen,ten) == 0)
-          return i;
-      i=i->next;
-    }
-    return NULL;
+	while (i!=NULL)
+	{
+		if(strcmp(i->info.HoTen,ten) == 0)
+				return i;
+		i=i->next;
+	}
+	return NULL;
 }
 
 void swapData(Node *a, Node *b) {
@@ -120,7 +120,13 @@ int main() {
 	cout << "Nhap ten can tim: ";
 	fflush(stdin);
 	gets(ten);
-	cout << (searchSV(list,ten) == NULL ? "Khong tim thay\n" : "Tim thay\n");
+	Node *sv = searchSV(list,ten);
+	if(sv == NULL) 
+		cout << "Khong tim thay\n";
+	else {
+		cout << "Tim thay: \n";
+		XuatSV(sv->info);
+	}
 	cout << "Danh sach sau khi sort\n";
 	sort(list);
 	xuatList(list);

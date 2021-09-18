@@ -8,6 +8,17 @@ struct SinhVien {
 	float DiemTB;
 };
 
+void nhapSV(SinhVien &sv) {
+	printf("Nhap ma so: ");
+	fflush(stdin);
+	gets(sv.MaSo);
+	printf("Nhap ten: ");
+	fflush(stdin);
+	gets(sv.HoTen);
+	printf("Nhap DTB");
+	scanf("%f", &sv.DiemTB);
+}
+
 struct Node {
 	SinhVien info;
 	Node* next;
@@ -61,8 +72,9 @@ void swapData(Node *a, Node *b) {
 
 void sort(List &list) {
 	for(Node *i = list.head; i != NULL; i = i->next)
-		for (Node *j = 0; j != NULL; j=j->next) {
-		}	
+		for (Node *j = 0; j != NULL; j=j->next) 
+			if(i->info.DiemTB > j->info.DiemTB)
+				swapData(i,j);
 }
 
 int main() {

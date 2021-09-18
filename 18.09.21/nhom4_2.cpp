@@ -63,7 +63,14 @@ void xuatListDTB(List list) {
 }
 
 Node* searchSV(List list, char* ten) {
-
+	Node*i =list.head;
+    while (i!=NULL)
+    {
+      if(i->info.HoTen == ten)
+          return i;
+      i=i->next;
+    }
+    return NULL;
 }
 
 void swapData(Node *a, Node *b) {

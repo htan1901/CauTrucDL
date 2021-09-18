@@ -21,10 +21,11 @@ struct List {
 };
 
 void initList(List &list) {
-
+	list.head = NULL;
+	list.tail = NULL;
 }
-Node * CreateNode(SinhVien value)
-{
+
+Node * CreateNode(SinhVien value) {
 	Node* a=new Node();
 	if(a!=NULL)
 	{
@@ -33,18 +34,18 @@ Node * CreateNode(SinhVien value)
 	}
 	return a;
 }
-void xuatList(List list) {
 
+void xuatList(List list) {
+	Node *i = list.head;
+	while(i != NULL) {
+
+	}
 }
 
 void xuatListDTB(List list) {
 	Node* i =list.head;
-	while (i!=NULL)
-	{
-		if(i->info.DiemTB > 5)
-		{
-			
-		}
+	while (i!=NULL) {
+		
 	}
 	
 }
@@ -54,15 +55,20 @@ Node* searchSV(List list, char* ten) {
 }
 
 void swapData(Node *a, Node *b) {
-
+	Node *temp = new Node;
+	temp->info = a->info;
+	a->info = b->info;
+	b->info = temp->info;
 }
 
 void sort(List &list) {
-
+	for(Node *i = list.head; i != NULL; i = i->next)
+		for (Node *j = 0; j != NULL; j=j->next) {
+		}	
 }
 
 int main() {
-	
+
 }
 
 

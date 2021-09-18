@@ -9,13 +9,13 @@ struct SinhVien {
 };
 
 void nhapSV(SinhVien &sv) {
-	printf("Nhap ma so");
+	printf("Nhap ma so: ");
 	fflush(stdin);
 	gets(sv.MaSo);
 	printf("Nhap ten: ");
 	fflush(stdin);
 	gets(sv.HoTen);
-	printf("Nhap DTB");
+	printf("Nhap DTB: ");
 	scanf("%f", &sv.DiemTB);
 }
 
@@ -104,9 +104,10 @@ int main() {
 	cin >> n;
 	while (n) {
 		SinhVien temp;
-		cout << "Nhap sinh vien: ";
+		cout << "Nhap sinh vien: \n";
 		nhapSV(temp);
 		addTail(list,CreateNode(temp));
+		n--;
 	}
 	cout << "Xuat danh sach: ";
 	xuatList(list);

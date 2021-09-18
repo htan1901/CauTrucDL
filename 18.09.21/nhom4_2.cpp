@@ -20,7 +20,7 @@ void nhapSV(SinhVien &sv) {
 }
 
 void XuatSV(SinhVien sv){
-	printf("Ma So: %-10d Ho Ten: %-30d DiemTB: %.2f",sv.MaSo,sv.HoTen,sv.DiemTB);
+	printf("Ma So: %-10s \nHo Ten: %-30s \nDiemTB: %.2f\n",sv.MaSo,sv.HoTen,sv.DiemTB);
 }
 struct Node {
 	SinhVien info;
@@ -61,21 +61,24 @@ void xuatList(List list) {
 	Node *i = list.head;
 	while(i != NULL) {
 		XuatSV(i->info);
+		i = i->next;
 	}
 }
 
 void xuatListDTB(List list) {
 	Node* i =list.head;
-	while (i!=NULL)
+	while (i!=NULL) {
 		if(i->info.DiemTB > 5.0)	
 			XuatSV(i->info);
+		i = i->next;
+	}
 }
 
 Node* searchSV(List list, char* ten) {
 	Node*i =list.head;
     while (i!=NULL)
     {
-      if(i->info.HoTen == ten)
+      if(strcmp(i->info.HoTen,ten) == 0)
           return i;
       i=i->next;
     }
@@ -91,7 +94,7 @@ void swapData(Node *a, Node *b) {
 
 void sort(List &list) {
 	for(Node *i = list.head; i != NULL; i = i->next)
-		for (Node *j = 0; j != NULL; j=j->next) 
+		for (Node *j = i->next; j != NULL; j=j->next) 
 			if(i->info.DiemTB > j->info.DiemTB)
 				swapData(i,j);
 }
@@ -111,13 +114,14 @@ int main() {
 	}
 	cout << "Xuat danh sach: ";
 	xuatList(list);
-	cout << "Xuat danh sach sinh vien co diem DTB > 5";
+	cout << "Xuat danh sach sinh vien co diem DTB > 5\n";
 	xuatListDTB(list);
 	char *ten = new char(50);
 	cout << "Nhap ten can tim: ";
 	fflush(stdin);
 	gets(ten);
-	cout << (searchSV(list,ten) == NULL ? "Khong tim thay" : "Tim thay");
-	cout << "Danh sach sau khi sort";
+	cout << (searchSV(list,ten) == NULL ? "Khong tim thay\n" : "Tim thay\n");
+	cout << "Danh sach sau khi sort\n";
 	sort(list);
+	xuatList(list);
 }

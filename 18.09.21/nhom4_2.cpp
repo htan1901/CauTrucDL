@@ -19,8 +19,8 @@ void nhapSV(SinhVien &sv) {
 	scanf("%f", &sv.DiemTB);
 }
 
-void Xuat1SinhVien(SinhVien *sv){
-	printf("Ma So: %-10d Ho Ten: %-30d DiemTB: %.2f",sv->MaSo,sv->HoTen,sv->DiemTB);
+void XuatSV(SinhVien sv){
+	printf("Ma So: %-10d Ho Ten: %-30d DiemTB: %.2f",sv.MaSo,sv.HoTen,sv.DiemTB);
 }
 struct Node {
 	SinhVien info;
@@ -50,16 +50,15 @@ Node * CreateNode(SinhVien value) {
 void xuatList(List list) {
 	Node *i = list.head;
 	while(i != NULL) {
-
+		XuatSV(i->info);
 	}
 }
 
 void xuatListDTB(List list) {
 	Node* i =list.head;
-	while (i!=NULL) {
-		
-	}
-	
+	while (i!=NULL)
+		if(i->info.DiemTB > 5.0)	
+			XuatSV(i->info);
 }
 
 Node* searchSV(List list, char* ten) {
@@ -90,6 +89,3 @@ void sort(List &list) {
 int main() {
 
 }
-
-
-

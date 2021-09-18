@@ -99,11 +99,24 @@ void swapData(Node *first, Node *second) {
 	free(temp);
 }
 
-void sort(List &list) {
+void interchangeSort(List &list) {
 	for(Node *i = list.head; i != NULL; i = i->next)
 		for(Node *j = i->next; j != NULL; j = j->next)
 			if(i->data > j->data)
 				swapData(i,j);
+}
+
+void selectionSort(List &list) {
+	Node *min;
+	for(Node *i = list.head; i != NULL; i = i->next) {
+		min = i;
+		for(Node *j = i->next; j != NULL; j = j->next) {
+			if(j->data < min->data)
+				min = j;
+		}
+		if(i != min)
+			swapData(i,min);
+	}
 }
 
 Node* searchNode(List list, int value) {
@@ -175,7 +188,7 @@ void baitap1() {
 				break;
 			case 6:
 				cout << "\nDanh sach sau khi sap xep: \n";
-				sort(list);
+				selectionSort(list);
 				traverse(list);
 				break;
 			case 7:

@@ -47,6 +47,16 @@ Node * CreateNode(SinhVien value) {
 	return a;
 }
 
+void addTail(List &list, Node *a) {
+	if(list.head == NULL) {
+		list.head = a;
+		list.tail = a;
+		return;
+	}
+	list.tail->next = a;
+	list.tail = a;
+}
+
 void xuatList(List list) {
 	Node *i = list.head;
 	while(i != NULL) {
@@ -87,5 +97,26 @@ void sort(List &list) {
 }
 
 int main() {
-
+	int n;
+	List list;
+	initList(list);
+	cout << "Nhap so luong sinh vien: ";
+	cin >> n;
+	while (n) {
+		SinhVien temp;
+		cout << "Nhap sinh vien: ";
+		nhapSV(temp);
+		addTail(list,CreateNode(temp));
+	}
+	cout << "Xuat danh sach: ";
+	xuatList(list);
+	cout << "Xuat danh sach sinh vien co diem DTB > 5";
+	xuatListDTB(list);
+	char *ten = new char(50);
+	cout << "Nhap ten can tim: ";
+	fflush(stdin);
+	gets(ten);
+	cout << (searchSV(list,ten) == NULL ? "Khong tim thay" : "Tim thay");
+	cout << "Danh sach sau khi sort";
+	sort(list);
 }

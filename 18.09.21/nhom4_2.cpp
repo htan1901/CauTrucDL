@@ -7,7 +7,9 @@ struct SinhVien {
 	char HoTen[30];
 	float DiemTB;
 };
-
+void Xuat1SinhVien(SinhVien *sv){
+	printf("Ma So: %-10d Ho Ten: %-30d DiemTB: %.2f",sv->MaSo,sv->HoTen,sv->DiemTB);
+}
 struct Node {
 	SinhVien info;
 	Node* next;
@@ -39,7 +41,10 @@ void xuatListDTB(List list) {
 	Node* i =list.head;
 	while (i!=NULL)
 	{
-		
+		if(i->info.DiemTB > 5)
+		{
+			
+		}
 	}
 	
 }

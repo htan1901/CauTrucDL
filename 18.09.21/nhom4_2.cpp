@@ -19,11 +19,15 @@ struct List {
 };
 
 void initList(List &list) {
-
+	list.head = NULL;
+	list.tail = NULL;
 }
 
 void xuatList(List list) {
+	Node *i = list.head;
+	while(i != NULL) {
 
+	}
 }
 
 void xuatListDTB(List list) {
@@ -35,15 +39,21 @@ Node* searchSV(List list, char* ten) {
 }
 
 void swapData(Node *a, Node *b) {
-
+	Node *temp = new Node;
+	temp->info = a->info;
+	a->info = b->info;
+	b->info = temp->info;
 }
 
 void sort(List &list) {
-
+	for(Node *i = list.head; i != NULL; i = i->next)
+		for (Node *j = 0; j != NULL; j=j->next) {
+		}
+		
 }
 
 int main() {
-	
+
 }
 
 

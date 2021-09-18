@@ -48,7 +48,7 @@ Node * CreateNode(SinhVien value) {
 }
 
 void addTail(List &list, Node *a) {
-	if(list.head == NULL) {
+	if(list.head == NULL) { //kiem tra list rong
 		list.head = a;
 		list.tail = a;
 		return;
@@ -100,20 +100,22 @@ void sort(List &list) {
 }
 
 int main() {
-	int n;
+	int n; // n la so luong phan tu
 	List list;
-	initList(list);
+	initList(list); // khoi tao
 	cout << "Nhap so luong sinh vien: ";
-	cin >> n;
-	while (n) {
+	cin >> n; // nhap n
+	// nhap n phan tu vao list
+	while (n > 0) {
 		SinhVien temp;
 		cout << "Nhap sinh vien: \n";
 		nhapSV(temp);
-		addTail(list,CreateNode(temp));
+		Node *gido = CreateNode(temp);
+		addTail(list,gido);
 		n--;
 	}
 	cout << "Xuat danh sach: ";
-	xuatList(list);
+	xuatList(list); 
 	cout << "Xuat danh sach sinh vien co diem DTB > 5\n";
 	xuatListDTB(list);
 	char *ten = new char(50);

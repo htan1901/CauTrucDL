@@ -9,7 +9,7 @@ struct SinhVien {
 };
 
 void nhapSV(SinhVien &sv) {
-	printf("Nhap ma so: ");
+	printf("Nhap ma so");
 	fflush(stdin);
 	gets(sv.MaSo);
 	printf("Nhap ten: ");
@@ -19,6 +19,9 @@ void nhapSV(SinhVien &sv) {
 	scanf("%f", &sv.DiemTB);
 }
 
+void Xuat1SinhVien(SinhVien *sv){
+	printf("Ma So: %-10d Ho Ten: %-30d DiemTB: %.2f",sv->MaSo,sv->HoTen,sv->DiemTB);
+}
 struct Node {
 	SinhVien info;
 	Node* next;

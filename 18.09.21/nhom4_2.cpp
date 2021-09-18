@@ -22,7 +22,16 @@ void initList(List &list) {
 	list.head = NULL;
 	list.tail = NULL;
 }
-
+Node * CreateNode(SinhVien value)
+{
+	Node* a=new Node();
+	if(a!=NULL)
+	{
+		a->info = value;
+		a->next = NULL;
+	}
+	return a;
+}
 void xuatList(List list) {
 	Node *i = list.head;
 	while(i != NULL) {
@@ -31,7 +40,12 @@ void xuatList(List list) {
 }
 
 void xuatListDTB(List list) {
-
+	Node* i =list.head;
+	while (i!=NULL)
+	{
+		
+	}
+	
 }
 
 Node* searchSV(List list, char* ten) {

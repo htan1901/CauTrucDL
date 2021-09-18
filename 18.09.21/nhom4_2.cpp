@@ -93,41 +93,64 @@ void swapData(Node *a, Node *b) {
 }
 
 void sort(List &list) {
-	for(Node *i = list.head; i != NULL; i = i->next)
+	for(Node *i = list.head; i->next != NULL; i = i->next)
 		for (Node *j = i->next; j != NULL; j=j->next) 
 			if(i->info.DiemTB > j->info.DiemTB)
 				swapData(i,j);
 }
 
 int main() {
-	int n;
+	int n,chon;
 	List list;
 	initList(list);
-	cout << "Nhap so luong sinh vien: ";
-	cin >> n;
-	while (n) {
-		SinhVien temp;
-		cout << "Nhap sinh vien: \n";
-		nhapSV(temp);
-		addTail(list,CreateNode(temp));
-		n--;
-	}
-	cout << "Xuat danh sach: ";
-	xuatList(list);
-	cout << "Xuat danh sach sinh vien co diem DTB > 5\n";
-	xuatListDTB(list);
-	char *ten = new char(50);
-	cout << "Nhap ten can tim: ";
-	fflush(stdin);
-	gets(ten);
-	Node *sv = searchSV(list,ten);
-	if(sv == NULL) 
-		cout << "Khong tim thay\n";
-	else {
-		cout << "Tim thay: \n";
-		XuatSV(sv->info);
-	}
-	cout << "Danh sach sau khi sort\n";
-	sort(list);
-	xuatList(list);
+	do{
+		system("cls");
+		printf("\n------Menu-----");
+		printf("\n1.Them 1 node");
+		printf("\n2.Xuat list");
+		printf("\n3.Xuat theo Diem Trung Binh");
+		printf("\n4.Tim Sinh Vien co ten la X");
+		printf("\n5.Sap xep theo Diem Trung Binh");
+		printf("\n0.exit");
+		printf("\nChon : ");
+		scanf("%d",&chon);
+		switch (chon)
+		{
+		case 1:
+			SinhVien temp;
+			nhapSV(temp);
+			addTail(list,CreateNode(temp));
+			break;
+		case 2:
+			printf("\nDanh sach Sinh Vien: \n");
+			xuatList(list);
+			system("pause");
+			break;
+		case 3:
+			printf("\nSinh Vien Co Diem Trung Binh > 5 la : \n");
+			xuatListDTB(list);
+			system("pause");
+			break;
+		case 4:
+		{
+			char *ten = new char[50];
+			printf("\nNhap Ten Sinh Vien : ");
+			fflush(stdin);
+			gets(ten);
+			Node* a = searchSV(list,ten);
+			(a==NULL) ? printf("\nKhong Tim Thay !") : printf("\nTim thay !");
+			system("pause");
+			break;
+		}
+		case 5:
+			sort(list);
+			printf("\n\tDa sap xep xong ! \n");
+			system("pause");
+			break;
+		default:
+			printf("error");
+			break;
+		}
+	}while(chon != 0 || chon < 6);
+	
 }

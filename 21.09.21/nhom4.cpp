@@ -8,35 +8,40 @@ struct Node {
 };
 typedef Node* Stack;
 
+Node* createNode(int value) {
+	Node* p = new Node;
+	p->info = value;
+	p->next = NULL;
+	return p;
+}
+
+bool isEmpty(Stack stack) {
+	return stack == NULL;
+}
+
 void initStack(Stack &stack){
 	stack = NULL;
 }
-Stack CreateNode(int value){
-	Stack stack = new Node();
-	if(stack != NULL){
-		stack->info = value;
-		stack->next = NULL;
-	}
-	return stack;
-}
-void push(Stack &stack , Stack x){
-	if(stack == NULL){
-		stack = x;
+
+void push(Stack &stack, int x) {
+	Node *a = createNode(x);
+	if(isEmpty(stack)) {
+		stack = a;
 		return;
 	}
-	x->next = stack;
-	stack = x;
+	a->next = stack;
+	stack = a;
+	return;
 }
-void pop(Stack &stack){
-	if(stack->next == NULL){
-		delete stack;
-		stack = NULL;
+
+void pop(Stack &stack) {
+	if(isEmpty(stack))
 		return;
-	}
-	Stack i = stack->next;
-	delete stack;
-	stack = i;
+	Node* a = stack;
+	stack = stack->next;
+	free(a);
 }
+
 int main() {
 
 }

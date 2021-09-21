@@ -176,7 +176,7 @@ void baitap1() {
 				traverse(list);
 				break;
 			case 3:
-				deleteBack(list);
+				deleteFront(list);
 				cout << "\nDanh sach sau khi xoa: \n";
 				traverse(list);
 				break;

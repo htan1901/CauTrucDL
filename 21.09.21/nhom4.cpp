@@ -45,17 +45,12 @@ void pop(Stack &stack, int &x) {
 	free(a);
 }
 
-void DecToBin() {
-	Stack stack;
+void DecToBin(Stack &stack, int convertedNumber) {
 	int x;
-	initStack(stack);
-	int n;
-	cout << "Nhap so can chuyen: ";
-	cin >> n;
 	int soDu;
-	while(n != 0) {
-		soDu = n%2;
-		n /= 2;
+	while(convertedNumber != 0) {
+		soDu = convertedNumber%2;
+		convertedNumber /= 2;
 		push(stack,soDu);
 	}
 	while(isEmpty(stack) == 0) {
@@ -63,8 +58,14 @@ void DecToBin() {
 		pop(stack,x);
 		cout << x;
 	}
+	cout << "\n";
 }
 
 int main() {
-	DecToBin();
+	Stack stack;
+	int n;
+	cout << "Nhap so can chuyen: ";
+	cin >> n;
+	initStack(stack);
+	DecToBin(stack,n);
 }

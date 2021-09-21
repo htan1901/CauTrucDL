@@ -31,25 +31,27 @@ bool isempty(Queue queue){
 }
 
 void push(Queue &queue, int value){
-		Node* a = CreateNode(value);
-		if(!isempty(queue)){
-			queue.tail->next = a;
-			queue.tail = a;
-		}
-		else
-			queue.tail = queue.head = a;
+	Node* a = CreateNode(value);
+	if(!isempty(queue)){
+		queue.tail->next = a;
+		queue.tail = a;
+	}
+	else
+		queue.tail = queue.head = a;
+
 }
 
 void pop(Queue &queue, int &value){
 	if(isempty(queue))
 		return;
 	else{
-			queue.head->data = value;
-			Node* i = queue.head;
-			queue.head = queue.head->next;
-			delete i;
+		queue.head->data = value;
+		Node* i = queue.head;
+		queue.head = queue.head->next;
+		delete i;
 	}
 }
+
 int main() {
 
 }

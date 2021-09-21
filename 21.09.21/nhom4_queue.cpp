@@ -25,23 +25,24 @@ Node* CreateNode(int value){
 	}
 	return p;
 }
+
 bool isempty(Queue queue){
 	return queue.head==NULL;
 }
+
 void push(Queue &queue, int value){
 		Node* a = CreateNode(value);
 		if(!isempty(queue)){
 			queue.tail->next = a;
 			queue.tail = a;
 		}
-		else{
+		else
 			queue.tail = queue.head = a;
-		}
 }
+
 void pop(Queue &queue, int &value){
-	if(isempty(queue)){
+	if(isempty(queue))
 		return;
-	}
 	else{
 			queue.head->data = value;
 			Node* i = queue.head;

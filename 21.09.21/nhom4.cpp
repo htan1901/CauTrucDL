@@ -63,6 +63,7 @@ void DecToBin() {
 		pop(stack,x);
 		cout << x;
 	}
+	cout << "\n";
 }
 
 int main() {

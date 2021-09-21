@@ -6,13 +6,11 @@ struct Node {
 	int info;
 	Node* next;
 };
-typedef Node* pList;
+typedef Node* Stack;
 
-void initList(pList &list) {
-	list = NULL;
+void initStack(Stack &stack){
+	stack = NULL;
 }
-
-
 
 int main() {
 

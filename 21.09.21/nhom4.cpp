@@ -36,14 +36,35 @@ void push(Stack &stack, int x) {
 	return;
 }
 
-void pop(Stack &stack) {
+void pop(Stack &stack, int &x) {
 	if(isEmpty(stack))
 		return;
 	Node* a = stack;
+	x = a->info;
 	stack = stack->next;
 	free(a);
 }
 
-int main() {
+void DecToBin() {
+	Stack stack;
+	int x;
+	initStack(stack);
+	int n;
+	cout << "Nhap so can chuyen: ";
+	cin >> n;
+	int soDu;
+	while(n != 0) {
+		soDu = n%2;
+		n /= 2;
+		push(stack,soDu);
+	}
+	while(isEmpty(stack) == 0) {
+		int x;
+		pop(stack,x);
+		cout << x;
+	}
+}
 
+int main() {
+	DecToBin();
 }

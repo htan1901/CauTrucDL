@@ -148,9 +148,11 @@ int main() {
 			system("pause");
 			break;
 		default:
-			printf("error");
+			printf("\nChuc nang khong ton tai\n");
+			printf("Chon lai \n");
+			system("pause");
 			break;
 		}
-	}while(chon != 0 || chon < 6);
+	}while(chon != 0);
 	
 }

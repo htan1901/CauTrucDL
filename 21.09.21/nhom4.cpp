@@ -58,7 +58,7 @@ void DecToBin() {
 		n /= 2;
 		push(stack,soDu);
 	}
-	while(!isEmpty(stack)) {
+	while(isEmpty(stack) == 0) {
 		int x;
 		pop(stack,x);
 		cout << x;

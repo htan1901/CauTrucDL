@@ -69,6 +69,16 @@ void deleteFront(List &list) {
 	free(delNode);
 }
 
+void deleteBack(List &list) {
+	Node *k = list.head;
+	while(k->next != list.tail) 
+		k = k->next;
+	k->next = list.tail->next;
+	delete(list.tail);
+	list.tail = k;
+	return;
+}
+
 void deleteNodeAfterValue(List &list, int value) {
 	Node *node = list.head;
 	while(node != NULL && node->data != value) 
@@ -133,7 +143,7 @@ void xuatChucNang() {
 	cout << "Chon chuc nang: \n"
 			 << "1. Them 1 node vao danh sach\n"
 			 << "2. Xuat danh sach\n"
-			 << "3. Xoa dau danh sach \n"
+			 << "3. Xoa cuoi danh sach \n"
 			 << "4. Xoa 1 node sau 1 node co data bang value \n"
 			 << "5. Them 1 node sau 1 node co data bang value \n"
 			 << "6. Sap xep lai danh sach \n"

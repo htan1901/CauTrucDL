@@ -3,25 +3,25 @@
 using namespace std;
 
 bool isNumber(string str);
-int find_first(string exp, char x);
 bool isPolynomial (string exp);
-string infixToPostfixl(string e);
+string infixToPostfix(string e);
+bool isOperator(char x);
+int precedence(char x);
+float calculate(string exp);
+float applyOperator(char x, float a, float b);
 
 int main() {
 	string e;
+	cout << "Nhap vao bieu thuc can tinh toan: \n";
 	cin >> e;
-	cout << infixToPostfix(e) << "\n"; 
+	e = infixToPostfix(e);
+	cout << "Sau khi chuyen\n";
+	cout << e;
+	cout << "\nSau khi tinh\n";
+	cout << calculate(e);
 }
 
-/*
-* Chuyen bieu thuc tu trung to -> hau to
-*	co tat ca 3 truong hop xay  ra khi xu ly bieu thuc (bieu thuc chi chua: so, + - * /)
-*	1. Bieu thuc la da thuc (con ton tai + - trong bieu thuc)
-*	2. Bieu thuc la don thuc (chi con * / trong bieu thuc)
-*	3. Bieu thuc la so
-*/
 string infixToPostfix(string e) {
-	// th1: Bieu thuc la da thuc
 	if(isPolynomial(e)) {
 		int lastMinus = e.find_last_of('-');
 		int lastPlus = e.find_last_of('+');
@@ -31,7 +31,6 @@ string infixToPostfix(string e) {
 		return infixToPostfix(left) + infixToPostfix(right) + e.at(last) + " ";
 	}
 	else {
-		// th2: Bieu thuc la don thuc
 		if(!isNumber(e)) {
 			int lastDiv = e.find_last_of('/');
 			int lastMul = e.find_last_of('*');
@@ -40,40 +39,111 @@ string infixToPostfix(string e) {
 			string right = e.substr(last+1);
 			return infixToPostfix(left) + infixToPostfix(right) + e.at(last) + " ";
 		}
-		//th3: Bieu thuc la so
 		return e + " ";
 	}
 }
 
-/*
-* input: exp: bieu thuc can keim tra
-*	return: true neu bieu thuc la so, false neu bieu thuc khong la so
-*/
 bool isNumber(string exp) { 
-	//return -1 neu la so || > -1 neu khong phai so
 	for(int i=0 ; i<exp.size(); i++) 
-		if(exp.at(i) > 57 || exp.at(i) < 48)
+		if(exp.at(i) > '9' || exp.at(i) < '0')
 			return false;
 	return true;
 }
 
+bool isOperator(char x) {
+	return x == '+' || x == '-' || x == '*' || x == '/';
+}
 
-/*
-* kiem tra co phai da thuc khong
-* input: exp: bieu thuc can kiem tra
-*	return: true neu bieu thuc da cho la da thuc, false neu khong la da thuc
-*/
 bool isPolynomial(string exp) {
 	if(exp.size() == 1)
 		return false;
 	return exp.find_first_of('+') != string::npos || exp.find_first_of('-') != string::npos;
 }
 
-/*
-* tinh toan bieu thuc
-* input: exp: bieu thuc can tinh toan
-*	return: so thuc la ket qua da tinh toan
-*/
-float calculate(string exp) {
+int precedence(char x) {
+	switch (x)
+	{
+		case '+':
+		case '-':
+			return 1;
+		case '*':
+		case '/':
+			return 2;
+		default:
+			return 0;
+	}
+}
 
+float applyOperator(char x, float a, float b) {
+	switch (x)
+	{
+		case '+':
+			return a+b;
+		case '-':
+			return a-b;
+		case '*':
+			return a*b;
+		case '/':
+			return a/b;
+	}
+}
+
+float calculate(string exp) {
+	stack<char> ops;
+	stack<float> values;
+	int length = exp.size();
+	string ele = "";
+	float a, b;
+
+	for(int i=0; i<length; i++) {
+		char current = exp.at(i);
+		if(current != ' ') {
+			if(isOperator(current)) {
+				if(ops.empty()) {
+					b = values.top();
+					values.pop();
+
+					a = values.top();
+					values.pop();
+
+					values.push(applyOperator(current,a,b));
+				}
+				else {
+					while(precedence(ops.top()) >= precedence(current)) {
+						b = values.top();
+						values.pop();
+
+						a = values.top();
+						values.pop();
+
+						char op = ops.top();
+						ops.pop();
+
+						values.push(applyOperator(op,a,b));
+					}
+					ops.push(current);
+				}
+			}
+			else
+				ele += current;
+		}
+		if(current == ' ') {
+			if(ele != "")
+				values.push((float)stoi(ele));
+			ele = "";
+		}
+	}
+	while(!ops.empty()) {
+		b = values.top();
+		values.pop();
+		
+		a = values.top();
+		values.pop();
+
+		char op = ops.top();
+    ops.pop();
+
+		values.push(applyOperator(op,a,b));
+	}
+	return (float)values.top();
 }

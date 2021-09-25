@@ -57,6 +57,7 @@ bool isOperator(char x) {
 bool isPolynomial(string exp) {
 	if(exp.size() == 1)
 		return false;
+	// string::npos ~ -1
 	return exp.find_first_of('+') != string::npos || exp.find_first_of('-') != string::npos;
 }
 

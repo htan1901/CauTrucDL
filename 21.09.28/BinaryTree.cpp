@@ -31,60 +31,25 @@ void freeNode(Node* a) {
 	delete(a);
 }
 
-void makeTree(Tree &tree, int height) {
+void createTree(Tree &tree) {
 	data_type value;
-	cout << "BAN DANG O VI TRI: " << height  << endl;
-	cout << "Nhap gia tri cua node: ";
-	cin >> value;
-	tree = createNode(value);
-	int choice;
-	cout << "\nChon cac chuc nang sau:\n"		
-			 << "1. Nhap cay con ben trai\n"
-			 << "2. Nhap cay con ben phai\n"
-			 << "3. Nhap ca hai ben\n"
-			 << "0. Thoat\n";
-	cin >> choice;
-	switch (choice) {
-		case 1: 
-			cout << "Nhanh trai: \n";
-			makeTree(tree->left,height+1);
-			break;
-		case 2:
-			cout << "Nhanh phai: \n";
-			makeTree(tree->right,height+1);
-			break;
-		case 3: 
-			cout << "Nhanh trai: \n";
-			makeTree(tree->left,height+1);
-			cout << "Nhanh phai: \n";
-			makeTree(tree->right,height+1);
-			break;
-		default:
-			return;
-			break;
-	}
-}
-
-void createTree(Tree &tree, int heigh) {
-	data_type value;
-	cout << "Vi tri hien tai:\n";
-	cout << "Bac: " << heigh + 1 << "\n";
 	cout << "Nhap gia tri can tao cho node\nNhap value < 0 de thoat: ";
 	cin >> value;
-	if(value < 0) {
-		cout << "Thoat...\n";
+	if(value < 0) 
 		return;
-	}
 	tree = createNode(value);
-	cout << "\nNhap cay con ben trai: \n";
-	createTree(tree->left, heigh+1);
-	cout << "\nNhap cay con ben phai: \n";
-	createTree(tree->right, heigh+1);
+	cout << "\nNhap cay con ben trai cua " << value << ": \n";
+	createTree(tree->left);
+	cout << "\nNhap cay con ben phai cua " << value << ": \n";
+	createTree(tree->right);
 }
 
 void search (Tree tree, data_type value, int &timthay) {
+	if(tree == NULL)
+		return;
 	if(tree->data == value) {
 		timthay = 1;
+		return;
 	}
 	if(timthay == 1)
 		return;
@@ -155,7 +120,7 @@ int main() {
 	Tree tree;
 	initTree(tree);
 	cout << "Tui em khong biet lam ham nhap cay co n phan tu\n";
-	makeTree(tree,0);
+	createTree(tree);
 	int choice;
 	do {
 		inMenu();

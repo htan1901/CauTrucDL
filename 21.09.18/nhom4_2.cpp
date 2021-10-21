@@ -37,7 +37,7 @@ void initList(List &list) {
 	list.tail = NULL;
 }
 
-Node * CreateNode(SinhVien value) {
+Node * createNode(SinhVien value) {
 	Node* a=new Node();
 	if(a!=NULL)
 	{
@@ -47,7 +47,7 @@ Node * CreateNode(SinhVien value) {
 	return a;
 }
 
-void addTail(List &list, Node *a) {
+void pushBack(List &list, Node *a) {
 	if(list.head == NULL) {
 		list.head = a;
 		list.tail = a;
@@ -119,7 +119,7 @@ int main() {
 		case 1:
 			SinhVien temp;
 			nhapSV(temp);
-			addTail(list,CreateNode(temp));
+			pushBack(list,createNode(temp));
 			break;
 		case 2:
 			printf("\nDanh sach Sinh Vien: \n");

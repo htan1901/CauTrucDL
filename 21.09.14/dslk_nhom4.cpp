@@ -34,7 +34,7 @@ Node* createNode(int value) {
 
 void pushFront(List &list, Node *node) {
 	if(isEmpty(list)) {
-		list.head = node;
+		list.head = node; 
 		list.tail = node;
 		return;
 	}
@@ -45,7 +45,6 @@ void pushFront(List &list, Node *node) {
 
 void pushBack(List &list, Node *node) {
 	if(isEmpty(list)) {
-		list.head = node;
 		list.tail = node;
 		return;
 	}
@@ -64,26 +63,26 @@ void traverse(List list) {
 }
 
 void deleteFront(List &list) {
-	Node *delNode = list.head;
-	list.head = list.head->next;
-	free(delNode);
+	Node *temp = list.head; 
+	list.head = list.head->next; 
+	free(temp); 
 }
 
 void deleteBack(List &list) {
-	Node *k = list.head;
-	while(k->next != list.tail) 
-		k = k->next;
-	k->next = list.tail->next;
-	delete(list.tail);
-	list.tail = k;
+	Node *pre = list.head; // gán cho pre bằng head để lặp
+	while(pre->next != list.tail) // lặp tới phần tử áp cuối
+		pre = pre->next;
+	pre->next = list.tail->next; // cho pre trỏ tới NULL
+	delete(list.tail); // xóa tail
+	list.tail = pre; // cập nhật lại tail
 	return;
 }
 
-void deleteNodeAfterValue(List &list, int value) {
-	Node *node = list.head;
-	while(node != NULL && node->data != value) 
+void deleteNode(List &list, int value) {
+	Node *node = list.head; // khởi tạo biến node để duyệt tới trước phần tử cần xóa
+	while(node->next != NULL && node->next->data != value) 
 		node = node->next;
-	if(node != NULL) {
+	if(node != NULL) { // nếu node khác NULL thì xóa node
 		Node *delNode = node->next;
 		node->next = node->next->next;
 		free(delNode);
@@ -183,7 +182,7 @@ void baitap1() {
 			case 4:
 				cout << "\nNhap so can xoa: ";
 				cin >> value;
-				deleteNodeAfterValue(list,value);
+				deleteNode(list,value);
 				cout << "\nDanh sach sau khi xoa: \n";
 				traverse(list);
 				break;

@@ -80,15 +80,10 @@ Node* search(Tree tree, int value) {
 	search(tree->left, value);
 }
 
-// trả về true nếu cây chỉ có 1 cây con, false nếu ngược lại
 bool hasOneChild(Tree tree) {
-	return 
-	(tree->left == NULL && tree->right != NULL) 
-											|| 
-	(tree->left != NULL && tree->right == NULL);
+	return (tree->left == NULL && tree->right != NULL) || (tree->left != NULL && tree->right == NULL);
 }
 
-// duyệt cây để tìm node thay thế
 Node* pre_successor(Tree tree) {
 	Node* n = tree->right;
 	while (n->left->left != NULL) 
@@ -98,25 +93,19 @@ Node* pre_successor(Tree tree) {
 
 void deleteSubTree(Tree &subTree) {
 	Node* deleteNode;
-	if(isLeaf(subTree)){ // nếu node hiện tại là node lá, xóa node
+	if(isLeaf(subTree)){
 		deleteNode = subTree;
 		subTree = NULL;
 		free(deleteNode);
 		return;
 	}
-	// nếu node hiện tại chỉ có 1 câu con, ta sẽ thay thé vị trí node cần xóa bằng cây con
-	// hàm hasOneChild để kiểm tra xem "có phải chỉ cây chỉ có một cây con không"
-	if(hasOneChild(subTree)) { 
+	if(hasOneChild(subTree)) {
 		if(subTree->left != NULL) 
 			subTree = subTree->left;
 		else 
 			subTree = subTree->right;
 		return;	
 	}
-	// trường hợp cuối cùng, cây có 2 cây con
-	// ta thực hiện tìm node thay thế cho node cần xóa, trong trường hợp này là node pre->left
-	// sau đó ta thực hiện thay thế node cần xóa bằng node thay thế
-	// hàm pre_successor dùng để tìm ra node để thay thế
 	Node* pre = pre_successor(subTree);
 	Node* successor = pre->left;
 	if(successor->right != NULL) {
@@ -134,13 +123,13 @@ void deleteSubTree(Tree &subTree) {
 }
 
 void deleteNode(Tree &tree, int value) {
-	if(tree == NULL) // nếu cây rỗng thì không thực hiện delete
+	if(tree == NULL)
 		return;
-	if(tree->data > value) // duyệt cây để tìm node cần xóa trong trường hợp data > value
+	if(tree->data > value)
 		deleteNode(tree->left, value);
-	if(tree->data < value) // duyệt cây để tìm node cần xóa trong trường hợp data < value
+	if(tree->data < value)
 		deleteNode(tree->right, value);
-	if(tree->data == value) // tìm thấy node, thực hiện xóa
+	if(tree->data == value)
 		deleteSubTree(tree);
 }
 
@@ -166,10 +155,10 @@ int main() {
 		addNode(tree,i);
 	cout << "\nDuyet theo: LMR\n";
 	LMR(tree);
-	// cout << "\nDuyet theo: MLR\n";
-	// MLR(tree);
-	// cout << "\nDuyet theo: LRM\n";
-	// LRM(tree);
+	cout << "\nDuyet theo: MLR\n";
+	MLR(tree);
+	cout << "\nDuyet theo: LRM\n";
+	LRM(tree);
 	cout << "\nXoa node co gia tri 50\n";
 	deleteNode(tree,50);
 	cout << "Sau khi xoa:\n";

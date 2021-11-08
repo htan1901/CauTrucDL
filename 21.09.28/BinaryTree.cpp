@@ -5,11 +5,11 @@ using namespace std;
 typedef int data_type;
 
 struct Node {
-	data_type data;
-	Node *left;
-	Node *right;	
+	data_type data; 
+	Node *left; 
+	Node *right;
 };
-typedef Node* Tree;
+typedef Node* Tree; 
 
 void initTree(Tree &tree) {
 	tree = NULL;
@@ -20,9 +20,9 @@ bool isEmpty(Tree &tree) {
 }
 
 Node* createNode(data_type data) {
-	Node *n = new Node;
-	n->data = data;
-	n->left = NULL;
+	Node *n = new Node; 
+	n->data = data; 
+	n->left = NULL; 
 	n->right = NULL;
 	return n;
 }
@@ -31,17 +31,13 @@ void freeNode(Node* a) {
 	delete(a);
 }
 
-void createTree(Tree &tree) {
-	data_type value;
-	cout << "Nhap gia tri can tao cho node\nNhap value < 0 de thoat: ";
-	cin >> value;
-	if(value < 0) 
+void createTree(Tree &tree, data_type a[], int l, int r) {
+	if(l>r)
 		return;
-	tree = createNode(value);
-	cout << "\nNhap cay con ben trai cua " << value << ": \n";
-	createTree(tree->left);
-	cout << "\nNhap cay con ben phai cua " << value << ": \n";
-	createTree(tree->right);
+	int m = (l+r)/2;
+	tree = createNode(a[m]);
+	createTree(tree->left,a,l,m-1);
+	createTree(tree->right,a,m+1,r);
 }
 
 void search (Tree tree, data_type value, int &timthay) {
@@ -58,27 +54,27 @@ void search (Tree tree, data_type value, int &timthay) {
 }
 
 void LMR(Tree tree) {
-	if(tree == NULL)
+	if(tree == NULL) 
 		return;
-	LMR(tree->left);
-	cout << tree->data << " ";
-	LMR(tree->right);
+	LMR(tree->left); 
+	cout << tree->data << " "; 
+	LMR(tree->right); 
 }
 
 void MLR(Tree tree) {
 	if(tree == NULL)
 		return;
-	cout << tree->data << " ";
-	MLR(tree->left);
-	MLR(tree->right);
+	cout << tree->data << " "; 
+	MLR(tree->left); 
+	MLR(tree->right); 
 }
 
 void LRM(Tree tree) {
-	if(tree == NULL)
+	if(tree == NULL) 
 		return;
-	LRM(tree->left);
+	LRM(tree->left); 
 	LRM(tree->right);
-	cout << tree->data << " ";
+	cout << tree->data << " "; 
 }
 
 int chieuCao(Tree tree) {
@@ -119,8 +115,15 @@ void inMenu() {
 int main() {
 	Tree tree;
 	initTree(tree);
-	cout << "Tui em khong biet lam ham nhap cay co n phan tu\n";
-	createTree(tree);
+	int n;
+	cout << "Nhap so luong phan tu cho cay: ";
+	cin >> n;
+	int a[n];
+	for(int i=0; i<n; i++) {
+		cout << "Nhap a[" << i << "]: ";
+		cin >> a[i];
+	}
+	createTree(tree,a,0,n-1);
 	int choice;
 	do {
 		inMenu();

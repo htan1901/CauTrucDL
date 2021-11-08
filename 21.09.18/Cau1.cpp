@@ -22,6 +22,7 @@ void nhapSV(SinhVien &sv) {
 void XuatSV(SinhVien sv){
 	printf("Ma So: %-10s \nHo Ten: %-30s \nDiemTB: %.2f\n",sv.MaSo,sv.HoTen,sv.DiemTB);
 }
+
 struct Node {
 	SinhVien info;
 	Node* next;
@@ -65,10 +66,10 @@ void xuatList(List list) {
 	}
 }
 
-void xuatListDTB(List list) {
+void xuatListDTB(List list, float DTB) {
 	Node* i =list.head;
 	while (i!=NULL) {
-		if(i->info.DiemTB > 5.0)	
+		if(i->info.DiemTB > DTB)	
 			XuatSV(i->info);
 		i = i->next;
 	}
@@ -110,7 +111,6 @@ int main() {
 		printf("\n2.Xuat list");
 		printf("\n3.Xuat theo Diem Trung Binh");
 		printf("\n4.Tim Sinh Vien co ten la X");
-		printf("\n5.Sap xep theo Diem Trung Binh");
 		printf("\n0.exit");
 		printf("\nChon : ");
 		scanf("%d",&chon);
@@ -128,7 +128,7 @@ int main() {
 			break;
 		case 3:
 			printf("\nSinh Vien Co Diem Trung Binh > 5 la : \n");
-			xuatListDTB(list);
+			xuatListDTB(list,5.0);
 			system("pause");
 			break;
 		case 4:
@@ -142,11 +142,6 @@ int main() {
 			system("pause");
 			break;
 		}
-		case 5:
-			sort(list);
-			printf("\n\tDa sap xep xong ! \n");
-			system("pause");
-			break;
 		default:
 			printf("\nChuc nang khong ton tai\n");
 			printf("Chon lai \n");
@@ -154,5 +149,4 @@ int main() {
 			break;
 		}
 	}while(chon != 0);
-	
 }

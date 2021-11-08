@@ -2,8 +2,6 @@
 
 using namespace std;
 
-//hello from nhom 4
-
 struct Node {
 	int info;
 	Node* next;

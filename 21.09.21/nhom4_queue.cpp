@@ -30,7 +30,7 @@ bool isempty(Queue queue){
 	return queue.head==NULL;
 }
 
-void push(Queue &queue, int value){
+void enqueue(Queue &queue, int value){
 	Node* a = CreateNode(value);
 	if(!isempty(queue)){
 		queue.tail->next = a;
@@ -41,7 +41,7 @@ void push(Queue &queue, int value){
 
 }
 
-void pop(Queue &queue, int &value){
+void dequeue(Queue &queue, int &value){
 	if(isempty(queue))
 		return;
 	else{

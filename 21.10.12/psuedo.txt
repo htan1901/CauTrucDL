@@ -1,0 +1,32 @@
+function addNode(tree, new_node):
+	if(tree is empty):
+		add node into tree;
+		exit function;
+	if(value of node == value of tree):
+		exit function;
+	if(value of node > value of tree):
+		addNode(tree.right, new_node);
+		exit function;
+	addNode(tree.left, new_node);
+
+function deleteNode(tree, value):
+	search for value
+	if value is leaf:
+		delete value;
+		exit function;
+	if value has one child:
+		bypass value;
+		exit function;
+	replace value with successor
+
+function search(tree, value):
+	if tree is empty exit
+	if data of tree == value
+		return tree;
+	if data of tree < value
+		search(tree.right, value);
+		exit function
+	if data of tree > value 
+		search(tree.leaf, value)
+
+		

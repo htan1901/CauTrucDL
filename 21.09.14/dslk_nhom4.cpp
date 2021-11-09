@@ -1,8 +1,3 @@
-/*
-*
-*	@author: Nhom 4
-*
-*/
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -69,20 +64,20 @@ void deleteFront(List &list) {
 }
 
 void deleteBack(List &list) {
-	Node *pre = list.head; // gán cho pre bằng head để lặp
-	while(pre->next != list.tail) // lặp tới phần tử áp cuối
+	Node *pre = list.head; 
+	while(pre->next != list.tail) 
 		pre = pre->next;
-	pre->next = list.tail->next; // cho pre trỏ tới NULL
-	delete(list.tail); // xóa tail
-	list.tail = pre; // cập nhật lại tail
+	pre->next = list.tail->next; 
+	delete(list.tail); 
+	list.tail = pre; 
 	return;
 }
 
 void deleteNode(List &list, int value) {
-	Node *node = list.head; // khởi tạo biến node để duyệt tới trước phần tử cần xóa
+	Node *node = list.head; 
 	while(node->next != NULL && node->next->data != value) 
 		node = node->next;
-	if(node != NULL) { // nếu node khác NULL thì xóa node
+	if(node != NULL) { 
 		Node *delNode = node->next;
 		node->next = node->next->next;
 		free(delNode);

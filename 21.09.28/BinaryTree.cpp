@@ -9,7 +9,7 @@ struct Node {
 	Node *left; 
 	Node *right;
 };
-typedef Node* Tree; 
+typedef Node* Tree;
 
 void initTree(Tree &tree) {
 	tree = NULL;
